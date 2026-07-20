@@ -1,0 +1,9 @@
+docling
+langchain-text-splitters
+sentence-transformers
+chromadb
+google-genai
+fastapi
+uvicorn
+python-dotenv
+pydantic

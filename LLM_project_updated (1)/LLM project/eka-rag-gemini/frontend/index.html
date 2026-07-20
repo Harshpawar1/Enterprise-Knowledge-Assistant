@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EKA — Enterprise Knowledge Assistant</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app">
+
+    <!-- LEDGER SIDEBAR -->
+    <aside class="ledger">
+      <div class="ledger__brand">
+        <span class="ledger__mark">EKA</span>
+        <span class="ledger__sub">Enterprise Knowledge Assistant</span>
+      </div>
+
+      <div class="ledger__block">
+        <p class="ledger__label">Status</p>
+        <div class="ledger__row">
+          <span class="dot" id="statusDot"></span>
+          <span id="statusText">checking backend…</span>
+        </div>
+      </div>
+
+      <div class="ledger__block">
+        <p class="ledger__label">Source library</p>
+        <ul class="ledger__docs" id="docList">
+          <li>HR‑Policy.pdf</li>
+        </ul>
+        <p class="ledger__hint">Add files to <code>data/docs</code> and run <code>python ingest.py</code> to index more.</p>
+      </div>
+
+      <div class="ledger__block ledger__block--grow">
+        <p class="ledger__label">How it works</p>
+        <ol class="ledger__steps">
+          <li>Your question is embedded</li>
+          <li>Nearest chunks are retrieved</li>
+          <li>Gemini answers from context only</li>
+        </ol>
+      </div>
+
+      <button class="ledger__reset" id="resetBtn">Clear conversation</button>
+    </aside>
+
+    <!-- MAIN CHAT COLUMN -->
+    <main class="chat">
+      <header class="chat__header">
+        <h1>Ask the archive</h1>
+        <p>Answers are grounded strictly in your indexed documents.</p>
+      </header>
+
+      <div class="chat__scroll" id="chatScroll">
+        <div class="msg msg--bot">
+          <div class="msg__avatar">EKA</div>
+          <div class="msg__bubble">
+            Welcome. Ask me anything covered in your indexed documents —
+            for example, <em>“How many casual leave days do employees get?”</em>
+          </div>
+        </div>
+      </div>
+
+      <form class="chat__composer" id="composerForm">
+        <textarea
+          id="queryInput"
+          rows="1"
+          placeholder="Ask a question about your documents…"
+          autocomplete="off"
+        ></textarea>
+        <button type="submit" id="sendBtn" aria-label="Send">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 12h16M14 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </form>
+
+      <p class="chat__endpoint">
+        Backend: <code id="endpointLabel"></code>
+        <button id="editEndpoint" type="button">change</button>
+      </p>
+    </main>
+
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
